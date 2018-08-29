@@ -1,6 +1,7 @@
 package com.example.varianttecnology.androidonlinequizapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.varianttecnology.androidonlinequizapp.Common.Common;
 import com.example.varianttecnology.androidonlinequizapp.Interface.ItemClickListener;
 import com.example.varianttecnology.androidonlinequizapp.Model.Category;
 import com.example.varianttecnology.androidonlinequizapp.ViewHolder.CategoryViewHolder;
@@ -80,7 +82,11 @@ public class CategoryFragment extends Fragment {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(), String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
+                        Intent startGame = new Intent(getActivity(),Start.class);
+                        Common.categoryId = adapter.getRef(position).getKey();
+                        Common.categoryName = model.getName();
+                        startActivity(startGame);
                     }
                 });
             }
